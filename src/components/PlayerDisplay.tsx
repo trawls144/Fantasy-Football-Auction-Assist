@@ -187,6 +187,7 @@ export function PlayerDisplay({ player, isTarget = false, onDraft, onAddTarget, 
           {newsData ? (
             <div className="space-y-3">
               <div className="flex items-start space-x-3">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img 
                   src={newsData.teamLogo} 
                   alt={newsData.team} 

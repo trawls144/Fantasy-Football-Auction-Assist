@@ -177,7 +177,7 @@ export function RosterScenarios({
     const draftedByUserIds = rosterData.map(r => r.player.id)
     const allDraftedPlayerIds = draftedPlayers.map(dp => dp.id) // draftedPlayers is Player[], so use .id directly
     
-    const combinedDraftedIds = [...new Set([...draftedByUserIds, ...allDraftedPlayerIds])]
+    const combinedDraftedIds = Array.from(new Set([...draftedByUserIds, ...allDraftedPlayerIds]))
     
     const undraftedPlayers = availablePlayers.filter(player => 
       !combinedDraftedIds.includes(player.id)
