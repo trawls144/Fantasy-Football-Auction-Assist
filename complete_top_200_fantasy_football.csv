@@ -1,0 +1,171 @@
+rank,name,position,team,tier,auction_value_ppr,espn_id,projected_fpts_2025,notes,priority
+1,Ja'Marr Chase,WR,CIN,1,62,4431750,219.0,ESPN ID available,Must Draft
+2,Justin Jefferson,WR,MIN,1,60,3139477,218.0,ESPN ID available,Must Draft
+3,Bijan Robinson,RB,ATL,1,58,,221.4,Need ESPN ID for live stats,Must Draft
+4,CeeDee Lamb,WR,DAL,1,57,4040715,216.0,ESPN ID available,Must Draft
+5,Saquon Barkley,RB,PHI,1,55,,219.0,Need ESPN ID for live stats,Must Draft
+6,Amon-Ra St. Brown,WR,DET,1,54,,214.0,Need ESPN ID for live stats,Must Draft
+7,Jahmyr Gibbs,RB,DET,1,53,,216.6,Need ESPN ID for live stats,Must Draft
+8,Puka Nacua,WR,LAR,1,52,,212.0,Need ESPN ID for live stats,Must Draft
+9,Christian McCaffrey,RB,SF,1,50,3128720,214.2,ESPN ID available,Must Draft
+10,Malik Nabers,WR,NYG,1,48,,210.0,Need ESPN ID for live stats,Must Draft
+11,Lamar Jackson,QB,BAL,1,45,3916387,233.5,ESPN ID available,Must Draft
+12,Josh Allen,QB,BUF,1,42,3128390,232.0,ESPN ID available,Must Draft
+13,Jayden Daniels,QB,WSH,1,40,,230.5,Need ESPN ID for live stats,Must Draft
+14,Joe Burrow,QB,CIN,1,36,,229.0,Need ESPN ID for live stats,Must Draft
+15,Jalen Hurts,QB,PHI,2,32,,197.5,Need ESPN ID for live stats,Must Draft
+16,De'Von Achane,RB,MIA,2,44,,180.8,Need ESPN ID for live stats,Must Draft
+17,Brian Thomas Jr.,WR,JAX,2,42,,183.0,Need ESPN ID for live stats,Must Draft
+18,Nico Collins,WR,HOU,2,41,,182.0,Need ESPN ID for live stats,Must Draft
+19,Drake London,WR,ATL,2,40,,181.0,Need ESPN ID for live stats,Must Draft
+20,A.J. Brown,WR,PHI,2,39,,180.0,Need ESPN ID for live stats,Must Draft
+21,Derrick Henry,RB,BAL,2,38,3116385,174.8,ESPN ID available,Must Draft
+22,Brock Bowers,TE,LV,2,37,,112.4,Need ESPN ID for live stats,Must Draft
+23,Jonathan Taylor,RB,IND,2,35,,172.4,Need ESPN ID for live stats,Must Draft
+24,Bucky Irving,RB,TB,2,34,,171.2,Need ESPN ID for live stats,Must Draft
+25,Davante Adams,WR,NYJ,2,33,16800,175.0,ESPN ID available,High Priority
+26,Ladd McConkey,WR,LAC,2,31,,174.0,Need ESPN ID for live stats,High Priority
+27,Jaxon Smith-Njigba,WR,SEA,2,30,,173.0,Need ESPN ID for live stats,High Priority
+28,Tyreek Hill,WR,MIA,2,29,,172.0,Need ESPN ID for live stats,High Priority
+29,James Cook,RB,BUF,2,28,,165.2,Need ESPN ID for live stats,High Priority
+30,Garrett Wilson,WR,NYJ,2,27,,170.0,Need ESPN ID for live stats,High Priority
+31,Terry McLaurin,WR,WSH,2,26,,169.0,Need ESPN ID for live stats,High Priority
+32,Tee Higgins,WR,CIN,2,25,,168.0,Need ESPN ID for live stats,High Priority
+33,Patrick Mahomes,QB,KC,2,28,3139477,170.5,ESPN ID available,High Priority
+34,Anthony Richardson,QB,IND,2,25,,169.0,Need ESPN ID for live stats,High Priority
+35,C.J. Stroud,QB,HOU,2,20,,167.5,Need ESPN ID for live stats,High Priority
+36,Dak Prescott,QB,DAL,3,18,,136.0,Need ESPN ID for live stats,High Priority
+37,Tua Tagovailoa,QB,MIA,3,16,,134.5,Need ESPN ID for live stats,High Priority
+38,Kyler Murray,QB,ARI,3,14,,133.0,Need ESPN ID for live stats,High Priority
+39,Caleb Williams,QB,CHI,3,12,,131.5,Need ESPN ID for live stats,High Priority
+40,Brock Purdy,QB,SF,3,10,,130.0,Need ESPN ID for live stats,High Priority
+41,Jordan Love,QB,GB,3,8,,128.5,Need ESPN ID for live stats,High Priority
+42,Drake Maye,QB,NE,4,6,,97.0,Need ESPN ID for live stats,High Priority
+43,Trevor Lawrence,QB,JAX,4,4,,95.5,Need ESPN ID for live stats,High Priority
+44,Aaron Rodgers,QB,NYJ,4,3,8439,94.0,ESPN ID available,High Priority
+45,George Kittle,TE,SF,2,24,,94.0,Need ESPN ID for live stats,High Priority
+46,Trey McBride,TE,ARI,2,23,,93.2,Need ESPN ID for live stats,High Priority
+47,Mark Andrews,TE,BAL,3,13,,77.4,Need ESPN ID for live stats,High Priority
+48,Travis Kelce,TE,KC,3,12,16800,76.6,ESPN ID available,High Priority
+49,Sam LaPorta,TE,DET,3,8,,75.8,Need ESPN ID for live stats,High Priority
+50,Evan Engram,TE,JAX,3,6,,75.0,Need ESPN ID for live stats,High Priority
+51,Kyle Pitts,TE,ATL,3,5,,74.2,Need ESPN ID for live stats,High Priority
+52,Dallas Goedert,TE,PHI,4,4,,58.4,Need ESPN ID for live stats,High Priority
+53,Jake Ferguson,TE,DAL,4,3,,57.6,Need ESPN ID for live stats,High Priority
+54,David Njoku,TE,CLE,4,2,,56.8,Need ESPN ID for live stats,High Priority
+55,Dalton Kincaid,TE,BUF,4,2,,56.0,Need ESPN ID for live stats,High Priority
+56,T.J. Hockenson,TE,MIN,4,1,,55.2,Need ESPN ID for live stats,High Priority
+57,Kyren Williams,RB,LAR,3,22,,106.6,Need ESPN ID for live stats,High Priority
+58,Kenneth Walker III,RB,SEA,3,21,,105.4,Need ESPN ID for live stats,High Priority
+59,Breece Hall,RB,NYJ,3,20,,104.2,Need ESPN ID for live stats,High Priority
+60,Josh Jacobs,RB,GB,3,19,,103.0,Need ESPN ID for live stats,High Priority
+61,Alvin Kamara,RB,NO,3,18,,101.8,Need ESPN ID for live stats,Good Value
+62,David Montgomery,RB,DET,3,17,,100.6,Need ESPN ID for live stats,Good Value
+63,Joe Mixon,RB,HOU,3,16,,99.4,Need ESPN ID for live stats,Good Value
+64,Aaron Jones,RB,MIN,3,15,,98.2,Need ESPN ID for live stats,Good Value
+65,Najee Harris,RB,PIT,3,14,,97.0,Need ESPN ID for live stats,Good Value
+66,Tony Pollard,RB,TEN,3,13,,95.8,Need ESPN ID for live stats,Good Value
+67,Rhamondre Stevenson,RB,NE,3,12,,94.6,Need ESPN ID for live stats,Good Value
+68,Travis Etienne,RB,JAX,3,11,,93.4,Need ESPN ID for live stats,Good Value
+69,Rachaad White,RB,TB,3,10,,92.2,Need ESPN ID for live stats,Good Value
+70,Chuba Hubbard,RB,CAR,3,9,,91.0,Need ESPN ID for live stats,Good Value
+71,Rico Dowdle,RB,DAL,3,8,,89.8,Need ESPN ID for live stats,Good Value
+72,Marvin Harrison Jr.,WR,ARI,2,24,,128.0,Need ESPN ID for live stats,Good Value
+73,Cooper Kupp,WR,LAR,2,23,2976499,127.0,ESPN ID available,Good Value
+74,Mike Evans,WR,TB,2,22,,126.0,Need ESPN ID for live stats,Good Value
+75,Chris Godwin,WR,TB,2,21,,125.0,Need ESPN ID for live stats,Good Value
+76,DK Metcalf,WR,SEA,2,20,,124.0,Need ESPN ID for live stats,Good Value
+77,DeVonta Smith,WR,PHI,2,19,,123.0,Need ESPN ID for live stats,Good Value
+78,Stefon Diggs,WR,HOU,2,18,,122.0,Need ESPN ID for live stats,Good Value
+79,Zay Flowers,WR,BAL,2,17,,121.0,Need ESPN ID for live stats,Good Value
+80,DJ Moore,WR,CHI,3,16,,100.0,Need ESPN ID for live stats,Good Value
+81,Keenan Allen,WR,CHI,3,15,,99.0,Need ESPN ID for live stats,Good Value
+82,George Pickens,WR,PIT,3,14,,98.0,Need ESPN ID for live stats,Good Value
+83,Jordan Addison,WR,MIN,3,13,,97.0,Need ESPN ID for live stats,Good Value
+84,Jayden Reed,WR,GB,3,12,,96.0,Need ESPN ID for live stats,Good Value
+85,Rome Odunze,WR,CHI,3,11,,95.0,Need ESPN ID for live stats,Good Value
+86,Calvin Ridley,WR,TEN,3,10,,94.0,Need ESPN ID for live stats,Good Value
+87,Courtland Sutton,WR,DEN,3,9,,93.0,Need ESPN ID for live stats,Good Value
+88,Jameson Williams,WR,DET,3,8,,92.0,Need ESPN ID for live stats,Good Value
+89,Tank Dell,WR,HOU,4,7,,71.0,Need ESPN ID for live stats,Good Value
+90,Amari Cooper,WR,BUF,4,6,,70.0,Need ESPN ID for live stats,Good Value
+91,Xavier Worthy,WR,KC,4,5,,69.0,Need ESPN ID for live stats,Good Value
+92,Tyler Lockett,WR,SEA,4,4,,68.0,Need ESPN ID for live stats,Good Value
+93,Diontae Johnson,WR,HOU,4,3,,67.0,Need ESPN ID for live stats,Good Value
+94,Jerry Jeudy,WR,CLE,4,2,,66.0,Need ESPN ID for live stats,Good Value
+95,Brandin Cooks,WR,DAL,4,1,,65.0,Need ESPN ID for live stats,Good Value
+96,DeAndre Hopkins,WR,KC,4,1,,64.0,Need ESPN ID for live stats,Good Value
+97,Darnell Mooney,WR,ATL,4,1,,63.0,Need ESPN ID for live stats,Good Value
+98,Adam Thielen,WR,CAR,4,1,,62.0,Need ESPN ID for live stats,Good Value
+99,J.K. Dobbins,RB,LAC,4,7,,31.2,Need ESPN ID for live stats,Good Value
+100,Brian Robinson Jr.,RB,WSH,4,6,,30.0,Need ESPN ID for live stats,Good Value
+101,Javonte Williams,RB,DEN,4,5,,30,Need ESPN ID for live stats,Good Value
+102,Tyjae Spears,RB,TEN,4,4,,30,Need ESPN ID for live stats,Good Value
+103,Jaylen Warren,RB,PIT,4,3,,30,Need ESPN ID for live stats,Good Value
+104,Isaac Guerendo,RB,SF,4,2,,30,Need ESPN ID for live stats,Good Value
+105,Jerome Ford,RB,CLE,4,1,,30,Need ESPN ID for live stats,Good Value
+106,Zamir White,RB,LV,4,1,,30,Need ESPN ID for live stats,Good Value
+107,Ezekiel Elliott,RB,DAL,4,1,,30,Need ESPN ID for live stats,Good Value
+108,Alexander Mattison,RB,LV,4,1,,30,Need ESPN ID for live stats,Good Value
+109,Hollywood Brown,WR,KC,4,1,,51.0,Need ESPN ID for live stats,Good Value
+110,Wan'Dale Robinson,WR,NYG,4,1,,50.0,Need ESPN ID for live stats,Good Value
+111,Rashid Shaheed,WR,NO,4,1,,49.0,Need ESPN ID for live stats,Good Value
+112,Tutu Atwell,WR,LAR,4,1,,48.0,Need ESPN ID for live stats,Good Value
+113,Jahan Dotson,WR,PHI,4,1,,47.0,Need ESPN ID for live stats,Good Value
+114,Michael Pittman Jr.,WR,IND,4,2,,46.0,Need ESPN ID for live stats,Good Value
+115,Josh Downs,WR,IND,4,1,,45.0,Need ESPN ID for live stats,Good Value
+116,Quentin Johnston,WR,LAC,4,1,,44.0,Need ESPN ID for live stats,Good Value
+117,Marquez Valdes-Scantling,WR,BUF,4,1,,43.0,Need ESPN ID for live stats,Good Value
+118,Curtis Samuel,WR,BUF,4,1,,42.0,Need ESPN ID for live stats,Good Value
+119,Tyler Boyd,WR,TEN,4,1,,41.0,Need ESPN ID for live stats,Good Value
+120,Jalen Tolbert,WR,DAL,4,1,,40.0,Need ESPN ID for live stats,Good Value
+121,Elijah Moore,WR,CLE,4,1,,39.0,Need ESPN ID for live stats,Depth/Handcuff
+122,Cedrick Wilson Jr.,WR,NO,4,1,,38.0,Need ESPN ID for live stats,Depth/Handcuff
+123,Noah Brown,WR,WSH,4,1,,37.0,Need ESPN ID for live stats,Depth/Handcuff
+124,Tre Tucker,WR,LV,4,1,,36.0,Need ESPN ID for live stats,Depth/Handcuff
+125,Cam Akers,RB,HOU,4,1,,30,Need ESPN ID for live stats,Depth/Handcuff
+126,Dameon Pierce,RB,HOU,4,1,,30,Need ESPN ID for live stats,Depth/Handcuff
+127,Ty Chandler,RB,MIN,4,1,,30,Need ESPN ID for live stats,Depth/Handcuff
+128,Miles Sanders,RB,CAR,4,1,,30,Need ESPN ID for live stats,Depth/Handcuff
+129,Kenneth Gainwell,RB,PHI,4,1,,30,Need ESPN ID for live stats,Depth/Handcuff
+130,Samaje Perine,RB,KC,4,1,,30,Need ESPN ID for live stats,Depth/Handcuff
+131,Tyler Allgeier,RB,ATL,4,1,,30,Need ESPN ID for live stats,Depth/Handcuff
+132,Justice Hill,RB,BAL,4,1,,30,Need ESPN ID for live stats,Depth/Handcuff
+133,Clyde Edwards-Helaire,RB,KC,4,1,,30,Need ESPN ID for live stats,Depth/Handcuff
+134,Roschon Johnson,RB,CHI,4,1,,30,Need ESPN ID for live stats,Depth/Handcuff
+135,D'Ernest Johnson,RB,JAX,4,1,,30,Need ESPN ID for live stats,Depth/Handcuff
+136,Khalil Herbert,RB,CHI,4,1,,30,Need ESPN ID for live stats,Depth/Handcuff
+137,Zach Charbonnet,RB,SEA,4,2,,30,Need ESPN ID for live stats,Depth/Handcuff
+138,Ray Davis,RB,BUF,4,1,,30,Need ESPN ID for live stats,Depth/Handcuff
+139,Cade Otton,TE,TB,4,1,,30,Need ESPN ID for live stats,Depth/Handcuff
+140,Isaiah Likely,TE,BAL,4,1,,30,Need ESPN ID for live stats,Depth/Handcuff
+141,Tucker Kraft,TE,GB,4,1,,30,Need ESPN ID for live stats,Depth/Handcuff
+142,Jonnu Smith,TE,MIA,4,1,,30,Need ESPN ID for live stats,Depth/Handcuff
+143,Tyler Conklin,TE,NYJ,4,1,,30,Need ESPN ID for live stats,Depth/Handcuff
+144,Hunter Henry,TE,NE,4,1,,30,Need ESPN ID for live stats,Depth/Handcuff
+145,Pat Freiermuth,TE,PIT,4,1,,30,Need ESPN ID for live stats,Depth/Handcuff
+146,Noah Fant,TE,SEA,4,1,,30,Need ESPN ID for live stats,Depth/Handcuff
+147,Mike Gesicki,TE,CIN,4,1,,30,Need ESPN ID for live stats,Depth/Handcuff
+148,Taysom Hill,TE,NO,4,1,,30,Need ESPN ID for live stats,Depth/Handcuff
+149,Geno Smith,QB,SEA,4,2,,30,Need ESPN ID for live stats,Depth/Handcuff
+150,Daniel Jones,QB,NYG,4,1,,30,Need ESPN ID for live stats,Depth/Handcuff
+151,Russell Wilson,QB,PIT,4,1,,30,Need ESPN ID for live stats,Depth/Handcuff
+152,Justin Fields,QB,PIT,4,1,,30,Need ESPN ID for live stats,Depth/Handcuff
+153,Sam Darnold,QB,MIN,4,1,,30,Need ESPN ID for live stats,Depth/Handcuff
+154,Gardner Minshew,QB,LV,4,1,,30,Need ESPN ID for live stats,Depth/Handcuff
+155,Bryce Young,QB,CAR,4,1,,30,Need ESPN ID for live stats,Depth/Handcuff
+156,Will Levis,QB,TEN,4,1,,30,Need ESPN ID for live stats,Depth/Handcuff
+157,Mac Jones,QB,JAX,4,1,,30,Need ESPN ID for live stats,Depth/Handcuff
+158,Deshaun Watson,QB,CLE,4,1,,30,Need ESPN ID for live stats,Depth/Handcuff
+159,Justin Tucker,K,BAL,4,1,,30,Need ESPN ID for live stats,Depth/Handcuff
+160,Harrison Butker,K,KC,4,1,,30,Need ESPN ID for live stats,Depth/Handcuff
+161,Brandon McManus,K,GB,4,1,,30,Need ESPN ID for live stats,Depth/Handcuff
+162,Chris Boswell,K,PIT,4,1,,30,Need ESPN ID for live stats,Depth/Handcuff
+163,Tyler Bass,K,BUF,4,1,,30,Need ESPN ID for live stats,Depth/Handcuff
+164,Jake Moody,K,SF,4,1,,30,Need ESPN ID for live stats,Depth/Handcuff
+165,Cowboys,DEF,DAL,4,2,,30,Need ESPN ID for live stats,Depth/Handcuff
+166,49ers,DEF,SF,4,2,,30,Need ESPN ID for live stats,Depth/Handcuff
+167,Ravens,DEF,BAL,4,2,,30,Need ESPN ID for live stats,Depth/Handcuff
+168,Bills,DEF,BUF,4,2,,30,Need ESPN ID for live stats,Depth/Handcuff
+169,Steelers,DEF,PIT,4,2,,30,Need ESPN ID for live stats,Depth/Handcuff
+170,Eagles,DEF,PHI,4,2,,30,Need ESPN ID for live stats,Depth/Handcuff

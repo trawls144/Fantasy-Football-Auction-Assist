@@ -1,0 +1,71 @@
+rank,name,position,team,tier,estimated_auction_value,espn_id,projected_fpts_2025,notes,data_source
+1,Ja'Marr Chase,WR,CIN,1,62,4431750,243.8,ESPN ID verified,Manual compilation + ESPN API structure
+2,Justin Jefferson,WR,MIN,1,60,3139477,242.6,ESPN ID verified,Manual compilation + ESPN API structure
+3,Bijan Robinson,RB,ATL,1,58,,245.5,ESPN ID needed for live data,Manual compilation + ESPN API structure
+4,CeeDee Lamb,WR,DAL,1,57,4040715,240.2,ESPN ID verified,Manual compilation + ESPN API structure
+5,Saquon Barkley,RB,PHI,1,55,,242.5,ESPN ID needed for live data,Manual compilation + ESPN API structure
+6,Amon-Ra St. Brown,WR,DET,1,54,,237.8,ESPN ID needed for live data,Manual compilation + ESPN API structure
+7,Jahmyr Gibbs,RB,DET,1,53,,239.5,ESPN ID needed for live data,Manual compilation + ESPN API structure
+8,Puka Nacua,WR,LAR,1,52,,235.4,ESPN ID needed for live data,Manual compilation + ESPN API structure
+9,Christian McCaffrey,RB,SF,1,50,3128720,236.5,ESPN ID verified,Manual compilation + ESPN API structure
+10,Malik Nabers,WR,NYG,1,48,,233.0,ESPN ID needed for live data,Manual compilation + ESPN API structure
+11,Lamar Jackson,QB,BAL,1,45,3916387,258,ESPN ID verified,Manual compilation + ESPN API structure
+12,Josh Allen,QB,BUF,1,42,3128390,256,ESPN ID verified,Manual compilation + ESPN API structure
+13,Jayden Daniels,QB,WSH,1,40,,254,ESPN ID needed for live data,Manual compilation + ESPN API structure
+14,De'Von Achane,RB,MIA,2,44,,199.0,ESPN ID needed for live data,Manual compilation + ESPN API structure
+15,Brian Thomas Jr.,WR,JAX,2,42,,202.0,ESPN ID needed for live data,Manual compilation + ESPN API structure
+16,Nico Collins,WR,HOU,2,41,,200.8,ESPN ID needed for live data,Manual compilation + ESPN API structure
+17,Drake London,WR,ATL,2,40,,199.6,ESPN ID needed for live data,Manual compilation + ESPN API structure
+18,A.J. Brown,WR,PHI,2,39,,198.4,ESPN ID needed for live data,Manual compilation + ESPN API structure
+19,Derrick Henry,RB,BAL,2,38,3116385,191.5,ESPN ID verified,Manual compilation + ESPN API structure
+20,Brock Bowers,TE,LV,2,37,,120,ESPN ID needed for live data,Manual compilation + ESPN API structure
+21,Joe Burrow,QB,CIN,2,36,,198,ESPN ID needed for live data,Manual compilation + ESPN API structure
+22,Jonathan Taylor,RB,IND,2,35,,187.0,ESPN ID needed for live data,Manual compilation + ESPN API structure
+23,Bucky Irving,RB,TB,2,34,,185.5,ESPN ID needed for live data,Manual compilation + ESPN API structure
+24,Davante Adams,WR,NYJ,2,33,16800,191.2,ESPN ID verified,Manual compilation + ESPN API structure
+25,Jalen Hurts,QB,PHI,2,32,,190,ESPN ID needed for live data,Manual compilation + ESPN API structure
+26,Ladd McConkey,WR,LAC,2,31,,188.8,ESPN ID needed for live data,Manual compilation + ESPN API structure
+27,Jaxon Smith-Njigba,WR,SEA,2,30,,187.6,ESPN ID needed for live data,Manual compilation + ESPN API structure
+28,Tyreek Hill,WR,MIA,2,29,,186.4,ESPN ID needed for live data,Manual compilation + ESPN API structure
+29,James Cook,RB,BUF,2,28,,176.5,ESPN ID needed for live data,Manual compilation + ESPN API structure
+30,Garrett Wilson,WR,NYJ,2,27,,184.0,ESPN ID needed for live data,Manual compilation + ESPN API structure
+31,Terry McLaurin,WR,WSH,2,26,,182.8,ESPN ID needed for live data,Manual compilation + ESPN API structure
+32,Tee Higgins,WR,CIN,2,25,,181.6,ESPN ID needed for live data,Manual compilation + ESPN API structure
+33,George Kittle,TE,SF,2,24,,107,ESPN ID needed for live data,Manual compilation + ESPN API structure
+34,Trey McBride,TE,ARI,2,23,,106,ESPN ID needed for live data,Manual compilation + ESPN API structure
+35,Patrick Mahomes,QB,KC,2,28,3139477,170,ESPN ID verified,Manual compilation + ESPN API structure
+36,Kyren Williams,RB,LAR,3,22,,136.0,ESPN ID needed for live data,Manual compilation + ESPN API structure
+37,Kenneth Walker III,RB,SEA,3,21,,134.5,ESPN ID needed for live data,Manual compilation + ESPN API structure
+38,Breece Hall,RB,NYJ,3,20,,133.0,ESPN ID needed for live data,Manual compilation + ESPN API structure
+39,Josh Jacobs,RB,GB,3,19,,131.5,ESPN ID needed for live data,Manual compilation + ESPN API structure
+40,Alvin Kamara,RB,NO,3,18,,130.0,ESPN ID needed for live data,Manual compilation + ESPN API structure
+41,Cooper Kupp,WR,LAR,3,17,2976499,145.8,ESPN ID verified,Manual compilation + ESPN API structure
+42,Mike Evans,WR,TB,3,16,,144.6,ESPN ID needed for live data,Manual compilation + ESPN API structure
+43,Chris Godwin,WR,TB,3,15,,143.4,ESPN ID needed for live data,Manual compilation + ESPN API structure
+44,DK Metcalf,WR,SEA,3,14,,142.2,ESPN ID needed for live data,Manual compilation + ESPN API structure
+45,Mark Andrews,TE,BAL,3,13,,75,ESPN ID needed for live data,Manual compilation + ESPN API structure
+46,Travis Kelce,TE,KC,3,12,16800,74,ESPN ID verified,Manual compilation + ESPN API structure
+47,DeVonta Smith,WR,PHI,3,11,,138.6,ESPN ID needed for live data,Manual compilation + ESPN API structure
+48,Marvin Harrison Jr.,WR,ARI,3,10,,137.4,ESPN ID needed for live data,Manual compilation + ESPN API structure
+49,Calvin Ridley,WR,TEN,3,9,,136.2,ESPN ID needed for live data,Manual compilation + ESPN API structure
+50,Anthony Richardson,QB,IND,3,25,,100,ESPN ID needed for live data,Manual compilation + ESPN API structure
+51,David Montgomery,RB,DET,3,8,,113.5,ESPN ID needed for live data,Manual compilation + ESPN API structure
+52,Joe Mixon,RB,HOU,3,7,,112.0,ESPN ID needed for live data,Manual compilation + ESPN API structure
+53,Aaron Jones,RB,MIN,3,6,,110.5,ESPN ID needed for live data,Manual compilation + ESPN API structure
+54,Najee Harris,RB,PIT,3,5,,109.0,ESPN ID needed for live data,Manual compilation + ESPN API structure
+55,Tony Pollard,RB,TEN,4,4,,77.5,ESPN ID needed for live data,Manual compilation + ESPN API structure
+56,Rhamondre Stevenson,RB,NE,4,3,,76.0,ESPN ID needed for live data,Manual compilation + ESPN API structure
+57,Stefon Diggs,WR,HOU,3,8,,126.6,ESPN ID needed for live data,Manual compilation + ESPN API structure
+58,Zay Flowers,WR,BAL,3,7,,125.4,ESPN ID needed for live data,Manual compilation + ESPN API structure
+59,DJ Moore,WR,CHI,3,6,,124.2,ESPN ID needed for live data,Manual compilation + ESPN API structure
+60,Keenan Allen,WR,CHI,3,5,,123.0,ESPN ID needed for live data,Manual compilation + ESPN API structure
+61,George Pickens,WR,PIT,4,4,,96.8,ESPN ID needed for live data,Manual compilation + ESPN API structure
+62,Jordan Addison,WR,MIN,4,3,,95.6,ESPN ID needed for live data,Manual compilation + ESPN API structure
+63,C.J. Stroud,QB,HOU,3,20,,74,ESPN ID needed for live data,Manual compilation + ESPN API structure
+64,Dak Prescott,QB,DAL,3,18,,72,ESPN ID needed for live data,Manual compilation + ESPN API structure
+65,Tua Tagovailoa,QB,MIA,3,16,,70,ESPN ID needed for live data,Manual compilation + ESPN API structure
+66,Kyler Murray,QB,ARI,3,14,,68,ESPN ID needed for live data,Manual compilation + ESPN API structure
+67,Sam LaPorta,TE,DET,3,8,,53,ESPN ID needed for live data,Manual compilation + ESPN API structure
+68,Evan Engram,TE,JAX,3,6,,52,ESPN ID needed for live data,Manual compilation + ESPN API structure
+69,Kyle Pitts,TE,ATL,3,5,,51,ESPN ID needed for live data,Manual compilation + ESPN API structure
+70,Dallas Goedert,TE,PHI,4,4,,50,ESPN ID needed for live data,Manual compilation + ESPN API structure

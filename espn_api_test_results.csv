@@ -1,0 +1,5 @@
+espn_id,expected_name,has_statistics,has_news,has_fantasy,has_gameLog,stat_categories,stat_labels
+16800,Davante Adams,True,True,True,True,3,14
+3128390,Josh Allen,True,True,True,True,3,14
+3139477,Justin Jefferson,True,True,True,True,1,9
+3116385,Derrick Henry,True,True,True,True,3,12
