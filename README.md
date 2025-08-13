@@ -2,7 +2,7 @@
 
 A comprehensive web application for managing fantasy football auction drafts, built with Next.js 14, TypeScript, and Supabase. Track your budget, manage your roster, analyze tier-based strategies, and optimize your draft with AI-powered roster scenarios.
 
-![Auctioneer Dashboard](/docs/screenshot.png)
+![Example Auctioneer Dashboard](/docs/screenshot.png)
 
 ## ✨ Features
 
@@ -170,7 +170,6 @@ The Roster Scenarios section provides AI-powered optimization:
 - **Tier Prioritization**: Algorithm prioritizes better tier players within budget constraints
 
 ### Advanced Features
-- **Multi-device Sync**: Your draft data syncs in real-time across devices
 - **Tier Visualization**: Color-coded tiers help identify value picks
 - **Position Flexibility**: Handles FLEX positions automatically
 - **Draft History**: Track when players were drafted and by whom
@@ -223,20 +222,8 @@ This project is open source and available under the [MIT License](LICENSE).
 - Ensure all imports are correct
 - Check that all required environment variables are set
 
-### Getting Help
-- Check the [Issues](../../issues) for common problems
-- Create a new issue with detailed information about your problem
-- Include error messages, browser console output, and steps to reproduce
 
-## 🎯 Roadmap
 
-- [ ] Multi-user draft rooms with real-time collaboration
-- [ ] Advanced player projections and analysis
-- [ ] Historical draft data and trends
-- [ ] Mobile app companion
-- [ ] Integration with major fantasy platforms
-- [ ] News and injury updates integration
-- [ ] Custom scoring system support
 
 ---
 
