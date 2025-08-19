@@ -8,11 +8,12 @@ import {
   TargetPlayer,
   RosterPlayer 
 } from '@/lib/supabase-client'
-import { isSupabaseConfigured } from '@/lib/supabase'
+// No longer need isSupabaseConfigured - always use Supabase
 
 export function usePlayers() {
   const [players, setPlayers] = useState<Player[]>([])
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
   
   // Debug logging for state changes
   useEffect(() => {
@@ -29,6 +30,7 @@ export function usePlayers() {
     }
     
     setLoading(true)
+    setError(null)
     console.log('usePlayers hook - setting loading to true')
     
     try {
@@ -38,6 +40,7 @@ export function usePlayers() {
       console.log('usePlayers hook - state updated with results, new length should be:', results.length)
     } catch (error) {
       console.error('Error searching players:', error)
+      setError('Failed to search players. Please check your connection.')
       setPlayers([])
     } finally {
       setLoading(false)
@@ -48,6 +51,7 @@ export function usePlayers() {
   const getAllPlayers = useCallback(async () => {
     console.log('usePlayers hook - getAllPlayers called, setting loading true')
     setLoading(true)
+    setError(null)
     try {
       const results = await playersApi.getAllPlayers()
       console.log('usePlayers hook - got all players from API:', results.length, results)
@@ -56,6 +60,7 @@ export function usePlayers() {
       console.log('usePlayers hook - setPlayers called')
     } catch (error) {
       console.error('Error fetching all players:', error)
+      setError('Failed to load players. Please check your Supabase connection.')
       setPlayers([])
     } finally {
       setLoading(false)
@@ -66,6 +71,7 @@ export function usePlayers() {
   return {
     players,
     loading,
+    error,
     searchPlayers,
     getAllPlayers
   }

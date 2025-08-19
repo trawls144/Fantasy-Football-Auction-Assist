@@ -1,4 +1,4 @@
-import { supabase, isSupabaseConfigured } from './supabase'
+// Client-side API calls (no direct Supabase connection)
 import { Player } from '@/types/database'
 import { 
   localRosterStorage, 
@@ -8,8 +8,7 @@ import {
   LocalTargetPlayer 
 } from './local-storage'
 
-// Track if we're using mock data due to missing tables
-let usesMockData = false
+// Note: Mock data kept for reference but not used in production
 
 // Use local storage types for consistency
 export type TargetPlayer = LocalTargetPlayer
@@ -262,136 +261,77 @@ const mockPlayers: Player[] = [
   }
 ]
 
-// Players API
+// Players API - Uses API routes to access Supabase server-side
 export const playersApi = {
   async searchPlayers(query: string): Promise<Player[]> {
     console.log('searchPlayers called with query:', query)
     
-    // Always try Supabase first if configured, regardless of usesMockData flag
-    if (isSupabaseConfigured()) {
-      console.log('Supabase configured, attempting search')
-      
-      try {
-        console.log('Supabase query:', `name.ilike.%${query}%,position.ilike.%${query}%,team.ilike.%${query}%`)
-        
-        const { data, error } = await supabase
-          .from('players')
-          .select('*')
-          .or(`name.ilike.%${query}%,position.ilike.%${query}%,team.ilike.%${query}%`)
-          .limit(10)
-        
-        console.log('Supabase search response:', { data, error, dataLength: data?.length })
-        console.log('Search - First player from Supabase:', data?.[0])
-        
-        if (error) {
-          console.warn('Supabase search error, falling back to mock data:', error)
-        } else if (data && data.length > 0) {
-          console.log('Returning Supabase search data:', data.length, 'results')
-          return data
-        } else {
-          console.log('No results from Supabase search')
-          return []
-        }
-      } catch (error) {
-        console.warn('Supabase search connection failed:', error)
-      }
-    } else {
-      console.log('Supabase not configured, using mock data')
+    if (!query.trim()) {
+      console.log('Empty query, returning empty results')
+      return []
     }
-
-    // Fallback to mock data
-    console.log('Using mock data for search')
-    const filtered = mockPlayers.filter(player =>
-      player.name.toLowerCase().includes(query.toLowerCase()) ||
-      player.position.toLowerCase().includes(query.toLowerCase()) ||
-      player.team?.toLowerCase().includes(query.toLowerCase())
-    )
-    console.log('Mock data filtered results:', filtered.length)
-    return filtered.slice(0, 10)
+    
+    try {
+      console.log('Searching via API for:', query)
+      
+      const response = await fetch(`/api/players?q=${encodeURIComponent(query)}`)
+      
+      if (!response.ok) {
+        const errorData = await response.json()
+        throw new Error(errorData.error || 'Search failed')
+      }
+      
+      const { data } = await response.json()
+      console.log('Search results from API:', data?.length || 0, 'players found')
+      return data || []
+    } catch (error) {
+      console.error('Failed to search players:', error)
+      return []
+    }
   },
 
   async getAllPlayers(): Promise<Player[]> {
-    console.log('getAllPlayers called')
+    console.log('getAllPlayers called - fetching via API')
     
-    // Always try Supabase first if configured
-    if (isSupabaseConfigured()) {
-      console.log('Supabase configured, attempting to fetch from database')
+    try {
+      const response = await fetch('/api/players')
       
-      try {
-        // First, test if the players table exists
-        const { data: tableData, error: tableError } = await supabase
-          .from('players')
-          .select('count', { count: 'exact', head: true })
-        
-        console.log('Table existence check:', { count: tableData, error: tableError })
-        
-        if (tableError) {
-          console.log('Players table does not exist or is not accessible:', tableError.message || 'No error message')
-          console.log('Falling back to mock data for local testing')
-          usesMockData = true // Mark that we're using mock data due to missing tables
-          return mockPlayers
-        }
-        
-        // Try to get all players
-        const { data, error } = await supabase
-          .from('players')
-          .select('*')
-          .order('name')
-        
-        console.log('getAllPlayers - Supabase response:', { dataLength: data?.length, error })
-        console.log('getAllPlayers - First player from Supabase:', data?.[0])
-        
-        if (error) {
-          console.warn('Supabase error fetching players:', error)
-        } else if (data && data.length > 0) {
-          console.log('Successfully fetched', data.length, 'players from Supabase')
-          return data
-        } else {
-          console.log('No players found in Supabase database')
-          return mockPlayers
-        }
-      } catch (error) {
-        console.warn('Supabase connection failed:', error)
+      if (!response.ok) {
+        const errorData = await response.json()
+        throw new Error(errorData.error || 'Failed to fetch players')
       }
-    } else {
-      console.log('Supabase not configured')
+      
+      const { data } = await response.json()
+      console.log('Successfully fetched', data?.length || 0, 'players from API')
+      return data || []
+    } catch (error) {
+      console.error('Failed to get all players:', error)
+      return []
     }
-    
-    // Fallback to mock data
-    console.log('Using mock data:', mockPlayers.length, 'players')
-    return mockPlayers
   },
 
   async getPlayerById(id: string): Promise<Player | null> {
     console.log('getPlayerById called with id:', id)
     
-    // Always try Supabase first if configured
-    if (isSupabaseConfigured()) {
-      console.log('Supabase configured, attempting to fetch player by ID')
+    try {
+      const response = await fetch(`/api/players/${id}`)
       
-      try {
-        const { data, error } = await supabase
-          .from('players')
-          .select('*')
-          .eq('id', id)
-          .single()
-        
-        if (error) {
-          console.warn('Supabase error fetching player by ID:', error)
-        } else if (data) {
-          console.log('Successfully fetched player from Supabase:', data.name)
-          return data
+      if (!response.ok) {
+        if (response.status === 404) {
+          console.log('Player not found:', id)
+          return null
         }
-      } catch (error) {
-        console.warn('Supabase connection failed for getPlayerById:', error)
+        const errorData = await response.json()
+        throw new Error(errorData.error || 'Failed to fetch player')
       }
-    } else {
-      console.log('Supabase not configured for getPlayerById')
+      
+      const { data } = await response.json()
+      console.log('Successfully fetched player from API:', data?.name || 'Unknown')
+      return data
+    } catch (error) {
+      console.error('Failed to get player by ID:', error)
+      return null
     }
-    
-    // Fallback to mock data
-    console.log('Using mock data for getPlayerById')
-    return mockPlayers.find(p => p.id === id) || null
   }
 }
 
