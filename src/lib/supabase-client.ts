@@ -1,21 +1,19 @@
 import { supabase, isSupabaseConfigured } from './supabase'
 import { Player } from '@/types/database'
+import { 
+  localRosterStorage, 
+  localTargetsStorage, 
+  localDraftedStorage,
+  LocalRosterPlayer,
+  LocalTargetPlayer 
+} from './local-storage'
 
-// User ID - in a real app this would come from authentication
-const MOCK_USER_ID = '00000000-0000-0000-0000-000000000000'
+// Track if we're using mock data due to missing tables
+let usesMockData = false
 
-export interface TargetPlayer extends Player {
-  priority: number
-  isDrafted?: boolean
-}
-
-export interface RosterPlayer {
-  id: string
-  player: Player
-  purchasePrice: number
-  rosterPosition: string
-  draftedAt: string
-}
+// Use local storage types for consistency
+export type TargetPlayer = LocalTargetPlayer
+export type RosterPlayer = LocalRosterPlayer
 
 // Mock data for when Supabase isn't configured
 const mockPlayers: Player[] = [
@@ -269,440 +267,202 @@ export const playersApi = {
   async searchPlayers(query: string): Promise<Player[]> {
     console.log('searchPlayers called with query:', query)
     
-    // Check if Supabase is properly configured
-    if (!isSupabaseConfigured()) {
-      console.log('Using mock data for search')
-      // Use mock data
-      const filtered = mockPlayers.filter(player =>
-        player.name.toLowerCase().includes(query.toLowerCase()) ||
-        player.position.toLowerCase().includes(query.toLowerCase()) ||
-        player.team?.toLowerCase().includes(query.toLowerCase())
-      )
-      console.log('Mock data filtered results:', filtered.length)
-      return filtered.slice(0, 10)
-    }
-
-    console.log('Using Supabase for search')
-
-    // First test a simple query to see if we can connect at all
-    try {
-      const testQuery = await supabase.from('players').select('count', { count: 'exact' })
-      console.log('Test query - total players count:', testQuery)
-    } catch (testError) {
-      console.log('Test query failed:', testError)
-    }
-
-    try {
-      console.log('Supabase query:', `name.ilike.%${query}%,position.ilike.%${query}%,team.ilike.%${query}%`)
+    // Always try Supabase first if configured, regardless of usesMockData flag
+    if (isSupabaseConfigured()) {
+      console.log('Supabase configured, attempting search')
       
-      const { data, error } = await supabase
-        .from('players')
-        .select('*')
-        .or(`name.ilike.%${query}%,position.ilike.%${query}%,team.ilike.%${query}%`)
-        .limit(10)
-      
-      console.log('Supabase raw response:', { data, error, dataLength: data?.length })
-      console.log('Search - First player from Supabase:', data?.[0])
-      
-      if (error) {
-        console.warn('Supabase search error, falling back to mock data:', error)
-        const filtered = mockPlayers.filter(player =>
-          player.name.toLowerCase().includes(query.toLowerCase()) ||
-          player.position.toLowerCase().includes(query.toLowerCase()) ||
-          player.team?.toLowerCase().includes(query.toLowerCase())
-        )
-        return filtered.slice(0, 10)
+      try {
+        console.log('Supabase query:', `name.ilike.%${query}%,position.ilike.%${query}%,team.ilike.%${query}%`)
+        
+        const { data, error } = await supabase
+          .from('players')
+          .select('*')
+          .or(`name.ilike.%${query}%,position.ilike.%${query}%,team.ilike.%${query}%`)
+          .limit(10)
+        
+        console.log('Supabase search response:', { data, error, dataLength: data?.length })
+        console.log('Search - First player from Supabase:', data?.[0])
+        
+        if (error) {
+          console.warn('Supabase search error, falling back to mock data:', error)
+        } else if (data && data.length > 0) {
+          console.log('Returning Supabase search data:', data.length, 'results')
+          return data
+        } else {
+          console.log('No results from Supabase search')
+          return []
+        }
+      } catch (error) {
+        console.warn('Supabase search connection failed:', error)
       }
-      
-      console.log('Returning Supabase data:', data?.length, 'results')
-      return data || []
-    } catch (error) {
-      console.warn('Supabase connection failed, using mock data:', error)
-      const filtered = mockPlayers.filter(player =>
-        player.name.toLowerCase().includes(query.toLowerCase()) ||
-        player.position.toLowerCase().includes(query.toLowerCase()) ||
-        player.team?.toLowerCase().includes(query.toLowerCase())
-      )
-      return filtered.slice(0, 10)
+    } else {
+      console.log('Supabase not configured, using mock data')
     }
+
+    // Fallback to mock data
+    console.log('Using mock data for search')
+    const filtered = mockPlayers.filter(player =>
+      player.name.toLowerCase().includes(query.toLowerCase()) ||
+      player.position.toLowerCase().includes(query.toLowerCase()) ||
+      player.team?.toLowerCase().includes(query.toLowerCase())
+    )
+    console.log('Mock data filtered results:', filtered.length)
+    return filtered.slice(0, 10)
   },
 
   async getAllPlayers(): Promise<Player[]> {
     console.log('getAllPlayers called')
     
-    // Check if Supabase is properly configured
-    if (!isSupabaseConfigured()) {
-      console.log('Supabase not configured, returning mock data:', mockPlayers.length, 'players')
-      return mockPlayers
+    // Always try Supabase first if configured
+    if (isSupabaseConfigured()) {
+      console.log('Supabase configured, attempting to fetch from database')
+      
+      try {
+        // First, test if the players table exists
+        const { data: tableData, error: tableError } = await supabase
+          .from('players')
+          .select('count', { count: 'exact', head: true })
+        
+        console.log('Table existence check:', { count: tableData, error: tableError })
+        
+        if (tableError) {
+          console.log('Players table does not exist or is not accessible:', tableError.message || 'No error message')
+          console.log('Falling back to mock data for local testing')
+          usesMockData = true // Mark that we're using mock data due to missing tables
+          return mockPlayers
+        }
+        
+        // Try to get all players
+        const { data, error } = await supabase
+          .from('players')
+          .select('*')
+          .order('name')
+        
+        console.log('getAllPlayers - Supabase response:', { dataLength: data?.length, error })
+        console.log('getAllPlayers - First player from Supabase:', data?.[0])
+        
+        if (error) {
+          console.warn('Supabase error fetching players:', error)
+        } else if (data && data.length > 0) {
+          console.log('Successfully fetched', data.length, 'players from Supabase')
+          return data
+        } else {
+          console.log('No players found in Supabase database')
+          return mockPlayers
+        }
+      } catch (error) {
+        console.warn('Supabase connection failed:', error)
+      }
+    } else {
+      console.log('Supabase not configured')
     }
-
-    console.log('Supabase configured, fetching from database')
     
-    // First, let's test if the players table exists
-    try {
-      const { data: tableData, error: tableError } = await supabase
-        .from('players')
-        .select('count', { count: 'exact', head: true })
-      
-      console.log('Table existence check:', { count: tableData, error: tableError })
-      
-      if (tableError) {
-        console.error('Players table does not exist or is not accessible:', tableError.message)
-        console.log('You need to run the SQL schema in your Supabase dashboard')
-        return mockPlayers
-      }
-    } catch (err) {
-      console.error('Failed to check table existence:', err)
-      return mockPlayers
-    }
-    
-    try {
-      const { data, error } = await supabase
-        .from('players')
-        .select('*')
-        .order('name')
-      
-      console.log('getAllPlayers - Supabase response:', { dataLength: data?.length, error })
-      console.log('getAllPlayers - First player from Supabase with all fields:', data?.[0])
-      console.log('getAllPlayers - Available columns:', data?.[0] ? Object.keys(data[0]) : [])
-      
-      if (error) {
-        console.warn('Supabase error, falling back to mock data:', error)
-        return mockPlayers
-      }
-      
-      if (!data || data.length === 0) {
-        console.warn('No data in Supabase database, falling back to mock data')
-        return mockPlayers
-      }
-      
-      return data
-    } catch (error) {
-      console.warn('Supabase connection failed, using mock data:', error)
-      return mockPlayers
-    }
+    // Fallback to mock data
+    console.log('Using mock data:', mockPlayers.length, 'players')
+    return mockPlayers
   },
 
   async getPlayerById(id: string): Promise<Player | null> {
-    // Check if Supabase is properly configured
-    if (!isSupabaseConfigured()) {
-      return mockPlayers.find(p => p.id === id) || null
-    }
-
-    try {
-      const { data, error } = await supabase
-        .from('players')
-        .select('*')
-        .eq('id', id)
-        .single()
+    console.log('getPlayerById called with id:', id)
+    
+    // Always try Supabase first if configured
+    if (isSupabaseConfigured()) {
+      console.log('Supabase configured, attempting to fetch player by ID')
       
-      if (error) {
-        console.warn('Supabase error, falling back to mock data:', error)
-        return mockPlayers.find(p => p.id === id) || null
+      try {
+        const { data, error } = await supabase
+          .from('players')
+          .select('*')
+          .eq('id', id)
+          .single()
+        
+        if (error) {
+          console.warn('Supabase error fetching player by ID:', error)
+        } else if (data) {
+          console.log('Successfully fetched player from Supabase:', data.name)
+          return data
+        }
+      } catch (error) {
+        console.warn('Supabase connection failed for getPlayerById:', error)
       }
-      
-      return data
-    } catch (error) {
-      console.warn('Supabase connection failed, using mock data:', error)
-      return mockPlayers.find(p => p.id === id) || null
+    } else {
+      console.log('Supabase not configured for getPlayerById')
     }
+    
+    // Fallback to mock data
+    console.log('Using mock data for getPlayerById')
+    return mockPlayers.find(p => p.id === id) || null
   }
 }
 
-// Roster API
+// Roster API - now uses local storage for all user actions
 export const rosterApi = {
   async getUserRoster(): Promise<RosterPlayer[]> {
-    // Check if Supabase is properly configured
-    if (!isSupabaseConfigured()) {
-      return [] // Return empty roster for demo
-    }
-
-    try {
-      const { data, error } = await supabase
-        .from('user_rosters')
-        .select(`
-          id,
-          purchase_price,
-          roster_position,
-          drafted_at,
-          player_id,
-          players (*)
-        `)
-        .eq('user_id', MOCK_USER_ID)
-        .order('drafted_at')
-      
-      if (error) {
-        console.warn('Supabase error, returning empty roster:', error)
-        return []
-      }
-      
-      return (data || []).map(item => ({
-        id: item.id,
-        player: item.players as unknown as Player,
-        purchasePrice: item.purchase_price,
-        rosterPosition: item.roster_position,
-        draftedAt: item.drafted_at
-      }))
-    } catch (error) {
-      console.warn('Supabase connection failed, returning empty roster:', error)
-      return []
-    }
+    console.log('GET USER ROSTER CALLED - using local storage')
+    return localRosterStorage.get()
   },
 
   async draftPlayer(playerId: string, purchasePrice: number, rosterPosition?: string): Promise<boolean> {
-    // Check if Supabase is properly configured
-    if (!isSupabaseConfigured()) {
-      console.warn('Supabase not configured, draft simulated')
-      return true // Simulate success for demo
+    console.log('DRAFT PLAYER CALLED - using local storage:', { playerId, purchasePrice, rosterPosition })
+    
+    // Get player data (from Supabase or mock data)
+    const player = await playersApi.getPlayerById(playerId)
+    if (!player) {
+      console.error('Player not found:', playerId)
+      return false
     }
-
-    try {
-      // Add to user roster
-      const { error: rosterError } = await supabase
-        .from('user_rosters')
-        .insert({
-          user_id: MOCK_USER_ID,
-          player_id: playerId,
-          purchase_price: purchasePrice,
-          roster_position: rosterPosition
-        })
-      
-      if (rosterError) throw rosterError
-      
-      // Update draft status
-      const { error: statusError } = await supabase
-        .from('draft_status')
-        .update({
-          is_drafted: true,
-          drafted_by_user: true,
-          drafted_at: new Date().toISOString()
-        })
-        .eq('player_id', playerId)
-      
-      if (statusError) throw statusError
-      
-      return true
-    } catch (error) {
-      console.warn('Supabase error drafting player, draft simulated:', error)
-      return true
-    }
+    
+    // Add to local roster
+    return localRosterStorage.add(player, purchasePrice, rosterPosition)
   },
 
   async removePlayer(playerId: string): Promise<boolean> {
-    // Check if Supabase is properly configured
-    if (!isSupabaseConfigured()) {
-      console.warn('Supabase not configured, remove simulated')
-      return true // Simulate success for demo
-    }
-
-    try {
-      // Remove from user roster
-      const { error: rosterError } = await supabase
-        .from('user_rosters')
-        .delete()
-        .eq('user_id', MOCK_USER_ID)
-        .eq('player_id', playerId)
-      
-      if (rosterError) throw rosterError
-      
-      // Update draft status to make player available again
-      const { error: statusError } = await supabase
-        .from('draft_status')
-        .update({
-          is_drafted: false,
-          drafted_by_user: false,
-          drafted_at: null
-        })
-        .eq('player_id', playerId)
-      
-      if (statusError) throw statusError
-      
-      return true
-    } catch (error) {
-      console.warn('Supabase error removing player, remove simulated:', error)
-      return true
-    }
+    console.log('REMOVE PLAYER CALLED - using local storage:', playerId)
+    return localRosterStorage.remove(playerId)
   }
 }
 
-// Targets API
+// Targets API - now uses local storage
 export const targetsApi = {
   async getUserTargets(): Promise<TargetPlayer[]> {
-    // Check if Supabase is properly configured
-    if (!isSupabaseConfigured()) {
-      return [] // Return empty targets for demo
-    }
-
-    try {
-      const { data, error } = await supabase
-        .from('targets')
-        .select(`
-          id,
-          priority,
-          player_id,
-          players (*)
-        `)
-        .eq('user_id', MOCK_USER_ID)
-        .order('priority')
-      
-      if (error) {
-        console.warn('Supabase error, returning empty targets:', error)
-        return []
-      }
-      
-      // Get drafted status for these players
-      const playerIds = (data || []).map(item => item.player_id)
-      const draftedIds = await draftStatusApi.getDraftedPlayers()
-      
-      return (data || []).map(item => ({
-        ...item.players as unknown as Player,
-        priority: item.priority,
-        isDrafted: draftedIds.includes(item.player_id)
-      }))
-    } catch (error) {
-      console.warn('Supabase connection failed, returning empty targets:', error)
-      return []
-    }
+    console.log('GET USER TARGETS CALLED - using local storage')
+    return localTargetsStorage.get()
   },
 
   async addTarget(playerId: string, priority: number): Promise<boolean> {
-    // Check if Supabase is properly configured
-    if (!isSupabaseConfigured()) {
-      console.warn('Supabase not configured, target add simulated')
-      return true // Simulate success for demo
+    console.log('ADD TARGET CALLED - using local storage:', playerId)
+    
+    // Get player data (from Supabase or mock data)
+    const player = await playersApi.getPlayerById(playerId)
+    if (!player) {
+      console.error('Player not found:', playerId)
+      return false
     }
-
-    try {
-      const { error } = await supabase
-        .from('targets')
-        .insert({
-          user_id: MOCK_USER_ID,
-          player_id: playerId,
-          priority
-        })
-      
-      if (error) {
-        console.warn('Supabase error adding target:', error)
-        return false
-      }
-      
-      return true
-    } catch (error) {
-      console.warn('Supabase connection failed, target add simulated:', error)
-      return true
-    }
+    
+    // Add to local targets
+    return localTargetsStorage.add(player)
   },
 
   async removeTarget(playerId: string): Promise<boolean> {
-    // Check if Supabase is properly configured
-    if (!isSupabaseConfigured()) {
-      console.warn('Supabase not configured, target removal simulated')
-      return true // Simulate success for demo
-    }
-
-    try {
-      const { error } = await supabase
-        .from('targets')
-        .delete()
-        .eq('user_id', MOCK_USER_ID)
-        .eq('player_id', playerId)
-      
-      if (error) {
-        console.warn('Supabase error removing target:', error)
-        return false
-      }
-      
-      return true
-    } catch (error) {
-      console.warn('Supabase connection failed, target removal simulated:', error)
-      return true
-    }
+    console.log('REMOVE TARGET CALLED - using local storage:', playerId)
+    return localTargetsStorage.remove(playerId)
   }
 }
 
-// Draft Status API
+// Draft Status API - now uses local storage
 export const draftStatusApi = {
   async getDraftedPlayers(): Promise<string[]> {
-    // Check if Supabase is properly configured
-    if (!isSupabaseConfigured()) {
-      return [] // Return empty for demo
-    }
-
-    try {
-      const { data, error } = await supabase
-        .from('draft_status')
-        .select('player_id')
-        .eq('is_drafted', true)
-      
-      if (error) {
-        console.warn('Supabase error fetching drafted players:', error)
-        return []
-      }
-      
-      return (data || []).map(item => item.player_id)
-    } catch (error) {
-      console.warn('Supabase connection failed, returning empty drafted list:', error)
-      return []
-    }
+    console.log('GET DRAFTED PLAYERS CALLED - using local storage')
+    return localDraftedStorage.get()
   },
 
   async markPlayerDrafted(playerId: string, draftedByUser: boolean): Promise<boolean> {
-    // Check if Supabase is properly configured
-    if (!isSupabaseConfigured()) {
-      console.warn('Supabase not configured, marking as drafted simulated')
-      return true // Simulate success for demo
-    }
-
-    try {
-      // Insert or update draft status
-      const { error } = await supabase
-        .from('draft_status')
-        .upsert({
-          player_id: playerId,
-          is_drafted: true,
-          drafted_by_user: draftedByUser,
-          drafted_at: new Date().toISOString()
-        })
-      
-      if (error) {
-        console.warn('Supabase error marking player as drafted:', error)
-        return false
-      }
-      
-      return true
-    } catch (error) {
-      console.warn('Supabase connection failed, marking as drafted simulated:', error)
-      return true
-    }
+    console.log('MARK PLAYER DRAFTED CALLED - using local storage:', playerId)
+    return localDraftedStorage.add(playerId)
   },
 
   async removePlayerFromDrafted(playerId: string): Promise<boolean> {
-    // Check if Supabase is properly configured
-    if (!isSupabaseConfigured()) {
-      console.warn('Supabase not configured, removing from drafted simulated')
-      return true // Simulate success for demo
-    }
-
-    try {
-      // Update draft status to make player available again
-      const { error } = await supabase
-        .from('draft_status')
-        .update({
-          is_drafted: false,
-          drafted_by_user: false,
-          drafted_at: null
-        })
-        .eq('player_id', playerId)
-      
-      if (error) {
-        console.warn('Supabase error removing player from drafted:', error)
-        return false
-      }
-      
-      return true
-    } catch (error) {
-      console.warn('Supabase connection failed, removing from drafted simulated:', error)
-      return true
-    }
+    console.log('REMOVE PLAYER FROM DRAFTED CALLED - using local storage:', playerId)
+    return localDraftedStorage.remove(playerId)
   }
 }
