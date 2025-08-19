@@ -2,7 +2,7 @@
 
 A comprehensive web application for managing fantasy football auction drafts, built with Next.js 14, TypeScript, and Supabase. Track your budget, manage your roster, analyze tier-based strategies, and optimize your draft with AI-powered roster scenarios.
 
-![Example Auctioneer Dashboard](/docs/screenshot.png)
+[Example Auctioneer Dashboard](https://fantasy-football-auction-assist.vercel.app/)
 
 ## ✨ Features
 
@@ -19,7 +19,7 @@ A comprehensive web application for managing fantasy football auction drafts, bu
 - **Budget Allocation Strategies** - Three pre-built roster construction approaches
 - **Roster Scenario Planning** - AI-powered optimization for remaining picks
 
-### 🏆 Roster Scenarios (AI-Powered)
+### 🏆 Roster Scenarios 
 The app includes three strategic approaches to roster construction:
 
 1. **Balanced Build** - Even budget distribution across all positions
