@@ -12,6 +12,8 @@ import { DraftedPlayers } from '@/components/DraftedPlayers'
 import { Tiers } from '@/components/Tiers'
 import { Player } from '@/types/database'
 import { useRoster, useTargets, usePlayers, useDraftStatus } from '@/hooks/useSupabaseData'
+import { clearAllDemoData } from '@/lib/local-storage'
+import { Button } from '@/components/ui/button'
 
 interface RosterSlot {
   position: string
@@ -144,13 +146,32 @@ export default function Home() {
 
   const isPlayerTarget = selectedPlayer ? targets.some(t => t.id === selectedPlayer.id) : false
 
+  const handleClearDemoData = () => {
+    if (confirm('Clear all demo data? This will reset your roster, targets, and drafted players.')) {
+      clearAllDemoData()
+      // Refresh the data by calling the fetch functions
+      getAllPlayers()
+      window.location.reload() // Simple way to refresh all state
+    }
+  }
+
   return (
     <DashboardShell>
       <div className="flex-1 space-y-6">
         
-        {/* Budget header: Full width */}
+        {/* Demo controls and Budget header: Full width */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <div className="lg:col-span-3">
+          <div className="lg:col-span-3 space-y-4">
+            <div className="flex justify-end">
+              <Button
+                onClick={handleClearDemoData}
+                variant="outline"
+                size="sm"
+                className="text-xs"
+              >
+                Clear Demo Data
+              </Button>
+            </div>
             <BudgetTracker
               totalBudget={totalBudget}
               remainingBudget={remainingBudget}
